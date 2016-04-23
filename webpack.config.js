@@ -1,4 +1,5 @@
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -11,9 +12,11 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'build/js'),
+    publicPath: '/js/',
     filename: 'bundle.js',
   },
   plugins: [
+    new CleanWebpackPlugin(['build']),
     new CopyWebpackPlugin([
       {
         context: path.resolve(__dirname, 'app/static'),
